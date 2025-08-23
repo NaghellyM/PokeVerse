@@ -6,7 +6,13 @@ import Pokemon from './PokemonFactory/Pokemon.js'
 const searchButton = document.getElementById('search__button')
 searchButton.addEventListener('click', async () => {
   const idToSearch = document.getElementById('search__input').value
-  const response = await getPokemonById({ id: idToSearch })
+  try {
+    const response = await getPokemonById({ id: idToSearch })
+  } catch {
+    // TODO: create card for error
+    console.error('Failed to fetch Pokemon data')
+    return
+  }
   console.log(response)
   const cardManager = new PokemonCardManager('#pokemon-container')
   const pokemon = new Pokemon(response.name, response.sprites.front_default, response.types[0].type.name)
