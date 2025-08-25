@@ -38,6 +38,7 @@ export const createPokemonInstance = (pokemonData) => {
   }
 
   if (!pokemonData.sprites || !pokemonData.sprites.front_default) {
+    throw new Error("Imagen de Pokémon requerida");
   }
 
   if (

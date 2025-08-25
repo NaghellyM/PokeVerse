@@ -219,7 +219,6 @@ class PokeVerseApp {
 
   /**
    * Maneja la búsqueda individual de Pokémon
-   * Utiliza tarjetas mínimas y oculta botones de paginación como se solicita
    */
   async handleSearch() {
     const searchInput = document.getElementById("search__input");
@@ -234,9 +233,7 @@ class PokeVerseApp {
     this.currentFilter = null;
 
     toggleElement("filter-buttons-action", false);
-
     this.updateActiveFilterButton(null);
-
     this.cardManager.clearAllCards();
 
     try {
