@@ -1,5 +1,6 @@
 class Pokemon {
-  constructor(name, image, type) {
+  constructor(id, name, image, type) {
+    this.id = id
     this.name = name
     this.image = image
     this.type = type
@@ -7,6 +8,7 @@ class Pokemon {
 
   getInfo() {
     return {
+      id: this.id,
       name: this.name,
       image: this.image,
       type: this.type,
@@ -14,7 +16,7 @@ class Pokemon {
   }
 
   isValid() {
-    return this.name && this.image && this.type
+    return this.id && this.name && this.image && this.type
   }
 }
 

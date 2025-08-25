@@ -25,78 +25,113 @@ class PokemonCardBuilder {
   }
 
   build() {
-    if (!this.card.pokemon) {
-      throw new Error("Pokemon is required to build a card");
-    }
-
+    this._validateCard();
     const cardElement = this._createCardElement();
-    const result = { ...this.card, element: cardElement };
+    const result = this._buildResult(cardElement);
     this.reset();
     return result;
   }
 
+  _validateCard() {
+    if (!this.card.pokemon) {
+      throw new Error("Pokemon is required to build a card");
+    }
+  }
+
+  _buildResult(cardElement) {
+    return { ...this.card, element: cardElement };
+  }
+
   _createCardElement() {
     const pokemon = this.card.pokemon.getInfo();
+    const card = this._createCardContainer();
+    card.appendChild(this._createHeader(pokemon));
+    card.appendChild(this._createContent(pokemon));
+    return card;
+  }
+
+  _createCardContainer() {
     const card = document.createElement("div");
     card.style.border = "1px solid #0253";
     card.style.borderRadius = ".5em";
     card.style.overflow = "hidden";
     card.style.width = "200px";
     card.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-
-    card.appendChild(this._createHeader(pokemon));
-    card.appendChild(this._createContent(pokemon));
-
     return card;
   }
 
-  lightenColor(hex, percent) {
-    hex = hex.replace(/^#/, '');
-    let r = parseInt(hex.substring(0,2), 16);
-    let g = parseInt(hex.substring(2,4), 16);
-    let b = parseInt(hex.substring(4,6), 16);
-
-    r = Math.min(255, Math.floor(r + (255 - r) * percent));
-    g = Math.min(255, Math.floor(g + (255 - g) * percent));
-    b = Math.min(255, Math.floor(b + (255 - b) * percent));
-
-    return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
-  }
-
   _createHeader(pokemon) {
-    const typeColor = this.styleStrategy.getTypeColor(pokemon.type);
     const header = document.createElement("div");
     header.className = "pokemon-card__header";
 
-    const lighterTypeColor = this.lightenColor(typeColor, 0.2);
+    header.appendChild(this._createNameElement(pokemon));
+    header.appendChild(this._createIdElement(pokemon));
+    header.appendChild(this._createImageContainer(pokemon));
+    header.appendChild(this._createTypeLabel(pokemon));
+
+    return header;
+  }
+
+  _createNameElement(pokemon) {
+    const typeColor = this.styleStrategy.getTypeColor(pokemon.type);
+    const lighterTypeColor = this.styleStrategy.lightenColor(typeColor, 0.2);
+
     const name = document.createElement("h2");
     name.className = "pokemon-card__name";
     name.textContent = pokemon.name;
+
     name.style.background = `linear-gradient(to right, ${typeColor}, ${lighterTypeColor})`;
     name.style.color = "#222";
     name.style.padding = "0.5em";
-    header.appendChild(name);
 
+    return name;
+  }
+  _createIdElement(pokemon) {
+    const typeColor = this.styleStrategy.getTypeColor(pokemon.type);
+    const lighterTypeColor = this.styleStrategy.lightenColor(typeColor, 0.2);
+
+    const id = document.createElement("h2");
+    id.className = "pokemon-card__id";
+    id.textContent = `#${pokemon.id}`;
+
+    id.style.background = `linear-gradient(to right, ${typeColor}, ${lighterTypeColor})`;
+    id.style.color = "#222";
+
+    return id;
+  }
+
+  _createImageContainer(pokemon) {
     const imageContainer = document.createElement("div");
     imageContainer.className = "pokemon-card__image-container";
+    imageContainer.style.display = "flex";
+    imageContainer.style.justifyContent = "center";
+    imageContainer.style.alignItems = "center";
+    imageContainer.style.height = "150px";
+    imageContainer.appendChild(this._createImage(pokemon));
+    return imageContainer;
+  }
 
+  _createImage(pokemon) {
     const img = document.createElement("img");
     img.className = "pokemon-card__image";
     img.src = pokemon.image;
     img.alt = pokemon.name;
     img.loading = "lazy";
-    imageContainer.appendChild(img);
+    img.style.maxWidth = "140px";
+    img.style.maxHeight = "140px";
+    img.style.objectFit = "contain";
+    return img;
+  }
 
-    // TODO: create funct add form span content
+  _createTypeLabel(pokemon) {
+    const typeColor = this.styleStrategy.getTypeColor(pokemon.type);
+
     const span = document.createElement("span");
     span.className = "pokemon-card__image-label";
     span.textContent = pokemon.type;
-
     span.style.backgroundColor = typeColor;
 
-    header.appendChild(imageContainer);
-    header.appendChild(span);
-    return header;
+    return span;
   }
 
   _createContent(pokemon) {
@@ -110,7 +145,7 @@ class PokemonCardBuilder {
     return content;
   }
 
-  _createInfoElement(type) {
+  _createTypeElement(type) {
     return null;
   }
 }
