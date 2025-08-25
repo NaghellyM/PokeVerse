@@ -37,7 +37,6 @@ class PokemonCardManager {
       console.warn("Pokemon is not valid:", pokemon);
       return null;
     }
-    console.log("Adding card of type:", type);
     let card;
     switch (type) {
       case "detailed":
