@@ -14,11 +14,12 @@
   padding: 0.7rem 1rem;
   border-radius: 30px;
   width: 12em;
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 0.5s;
   margin-right: -2rem;
 }
 
-.search__input:hover, .search__input:focus {
+.search__input:hover,
+.search__input:focus {
   box-shadow: 0 0 1em #00000013;
 }
 
@@ -39,7 +40,7 @@
 .search__button {
   border: none;
   background-color: #f4f2f2;
-  margin-top: .1em;
+  margin-top: 0.1em;
 }
 
 .search__button:hover {
@@ -81,7 +82,7 @@ h1 {
   padding: 0%;
 
   & .pokemon-card__image-label {
-    padding: .5em;
+    padding: 0.5em;
   }
 
   & h2 {
@@ -93,8 +94,6 @@ h1 {
     height: 10em;
   }
 }
-
-
 
 .pokemon-card__content {
   justify-content: center;
