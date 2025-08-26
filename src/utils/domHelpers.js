@@ -34,7 +34,7 @@ export const clearContainer = (containerId) => {
 export const toggleElement = (elementId, show) => {
   const element = document.getElementById(elementId);
   if (element) {
-    element.style.display = show ? "block" : "none";
+    element.style.display = show ? "flex" : "none";
   }
 };
 

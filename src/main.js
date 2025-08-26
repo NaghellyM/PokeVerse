@@ -133,6 +133,7 @@ class PokeVerseApp {
     this.isSearchMode = false;
 
     toggleElement("filter-buttons-action", true);
+    toggleElement("loader", true);
 
     this.updateActiveFilterButton(filterKey);
 
@@ -158,6 +159,7 @@ class PokeVerseApp {
       console.error("Error aplicando filtro:", error);
       this.cardManager.addErrorCard(selectedFilter);
     }
+    toggleElement("loader", false);
   }
 
   /**
@@ -233,6 +235,8 @@ class PokeVerseApp {
     this.currentFilter = null;
 
     toggleElement("filter-buttons-action", false);
+    toggleElement("loader", true);
+
     this.updateActiveFilterButton(null);
     this.cardManager.clearAllCards();
 
@@ -256,6 +260,7 @@ class PokeVerseApp {
       this.cardManager.addErrorCard(searchTerm);
     }
 
+    toggleElement("loader", false);
     searchInput.value = "";
   }
 

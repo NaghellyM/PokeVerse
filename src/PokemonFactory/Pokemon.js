@@ -4,29 +4,28 @@ class Pokemon {
     this.name = name;
     this.image = image;
     this.type = type;
-    this._pokemonData = PokemonData
   }
   get stats() {
     if (!this._pokemonData || this._pokemonData.stats) {
-      return null
+      return null;
     }
     const statsType = {
-      'hp': 'vida',
-      'attack': 'ataque',
-      'defense': 'defensa',
-      'special-attack': 'ataqueEspecial',
-      'special-defense': 'defensaEspecial',
-      'speed': 'velocidad'
-    }
+      hp: "vida",
+      attack: "ataque",
+      defense: "defensa",
+      "special-attack": "ataqueEspecial",
+      "special-defense": "defensaEspecial",
+      speed: "velocidad",
+    };
 
-    const stats = {}
-    this._pokemonData.stats.forEach(stat => {
-      const translated = statsType[stat.stat.name]
+    const stats = {};
+    this._pokemonData.stats.forEach((stat) => {
+      const translated = statsType[stat.stat.name];
       if (translated) {
-        stats[translated] = stat.base_stat
+        stats[translated] = stat.base_stat;
       }
-    })
-    return stats
+    });
+    return stats;
   }
   getInfo() {
     return {
@@ -43,4 +42,3 @@ class Pokemon {
 }
 
 export default Pokemon;
-
