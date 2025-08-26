@@ -16,6 +16,15 @@ export const POKEMON_TYPES = {
   Hada: "fairy",
 };
 
+export const POKEMON_STASTS = {
+  hp: "Vida",
+  attack: "Ataque",
+  defense: "Defensa",
+  special_attack: "Ataque Especial",
+  special_defense: "Defensa Especial",
+  speed: "Velocidad",
+};
+
 export const PAGINATION_CONFIG = {
   ITEMS_PER_PAGE: 20,
   MAX_VISIBLE_PAGES: 5,

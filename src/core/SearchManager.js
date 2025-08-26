@@ -70,7 +70,7 @@ export class SearchManager {
       const pokemon = createPokemonInstance(data);
 
       if (pokemon.isValid()) {
-        this.cardManager.addMinimalCard(pokemon);
+        this.cardManager.addDetailedCard(pokemon);
       } else {
         this.cardManager.addErrorCard(searchTerm);
       }

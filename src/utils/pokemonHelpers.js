@@ -55,8 +55,16 @@ export const createPokemonInstance = (pokemonData) => {
       pokemonData.name,
       pokemonData.sprites?.front_default || "/placeholder-pokemon.png",
       pokemonData.types[0]?.type?.name || "unknown",
+      pokemonData.stats.map((item) => {
+        return {
+          name: item.stat.name,
+          value: item.base_stat,
+        };
+      }),
+      pokemonData.moves.map((move) => move.move.name),
     );
   } catch (error) {
+    console.error("Error creando instancia de Pokémon:", error);
     throw error;
   }
 };
