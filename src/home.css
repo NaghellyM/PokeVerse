@@ -1,13 +1,13 @@
 :root {
-  --primary: #80BCBD;
-  --blue-light: #AAD9BB;
-  --blue-dark: #154d71; 
-  --blue-accent: #80BCBD;
+  --primary-blue: #80bcbd;
+  --blue-light: #aad9bb;
+  --blue-dark: #154d71;
+  --blue-accent: #3b82f6;
   --white: #ffffff;
-  --gray-light: #f8fafc;
+  --gray-light: #f9f7c9;
   --gray-medium: #64748b;
   --gray-dark: #1e293b;
-  --shadow: #80BCBD;
+  --shadow: rgba(37, 99, 235, 0.15);
 }
 
 * {
@@ -19,9 +19,11 @@
 body {
   font-family: "Grandstander", cursive;
   font-optical-sizing: auto;
-  background: linear-gradient(160deg,
-      var(--blue-light) 100%,
-      var(--primary) 0%);
+  background: linear-gradient(
+    90deg,
+    var(--blue-light) 100%,
+    var(--primary-blue) 0%
+  );
   height: 100vh;
   overflow: hidden;
   color: var(--gray-dark);
@@ -117,7 +119,7 @@ body {
 .nav-link:hover,
 .nav-link.active {
   color: var(--white);
-  background: var(--primary);
+  background: var(--primary-blue);
 }
 
 .hero-section {
@@ -202,7 +204,6 @@ body {
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -281,3 +282,4 @@ body {
     max-width: 400px;
   }
 }
+
