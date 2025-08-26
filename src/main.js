@@ -1,4 +1,3 @@
-import "./style.css";
 import { AppController } from "./core/AppController.js";
 
 /**
