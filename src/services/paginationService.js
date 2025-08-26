@@ -80,28 +80,4 @@ export class PaginationService {
   hasNextPage() {
     return this.currentPage < this.getTotalPages();
   }
-
-  /**
-   * Obtiene información del estado actual de la paginación
-   */
-  getPaginationInfo() {
-    return {
-      currentPage: this.currentPage,
-      totalPages: this.getTotalPages(),
-      totalItems: this.totalItems,
-      hasNext: this.hasNextPage(),
-      hasPrevious: this.hasPreviousPage(),
-      startItem: (this.currentPage - 1) * this.itemsPerPage + 1,
-      endItem: Math.min(this.currentPage * this.itemsPerPage, this.totalItems),
-    };
-  }
-
-  /**
-   * Resetea la paginación
-   */
-  reset() {
-    this.currentPage = 1;
-    this.totalItems = 0;
-    this.allItems = [];
-  }
 }
