@@ -8,7 +8,7 @@ class PokemonCardManager {
     this.cards = new Map();
 
     if (!this.container) {
-      throw new Error(`Container not found: ${containerSelector}`);
+      throw new Error(`Contenedor no encontrado: ${containerSelector}`);
     }
   }
 
@@ -22,22 +22,17 @@ class PokemonCardManager {
 
   addErrorCard(searchError = null) {
     const card = this.factory.createErrorCard(searchError);
-
     const cardId = `error-${uuidv4()}`;
     card.element.setAttribute("data-pokemon-id", cardId);
-
     this.container.appendChild(card.element);
     this.cards.set(cardId, card);
-
     return cardId;
   }
 
   _addCard(pokemon, type) {
     if (!pokemon.isValid()) {
-      console.warn("Pokemon is not valid:", pokemon);
       return null;
     }
-    console.log("Adding card of type:", type);
     let card;
     switch (type) {
       case "detailed":
@@ -47,11 +42,10 @@ class PokemonCardManager {
         card = this.factory.createMinimalCard(pokemon);
         break;
       default:
-        throw new Error(`Unknown card type: ${type}`);
+        throw new Error(`Tipo de tarjeta desconocido: ${type}`);
     }
     const cardId = `pokemon-${uuidv4()}`;
     card.element.setAttribute("data-pokemon-id", cardId);
-
     this.container.appendChild(card.element);
     this.cards.set(cardId, card);
   }
