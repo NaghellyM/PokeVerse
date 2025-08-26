@@ -18,7 +18,7 @@ class DefaultTypeStyleStrategy {
       ghost: "#9775fa",
       steel: "#adb5bd",
       normal: "#ced4da",
-      error404: "#637269ff"
+      error404: "#637269ff",
     };
   }
 
